@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import pandas as pd
 from collections import Counter
-from pyinstrument import Profiler
-cnt=1
+
+cnt = 1
 headers = {
     'cookie': 'buvid3=D33649ED-6F6C-FB48-650D-DBD271B5798C10363infoc; b_nut=1667930410; i-wanna-go-back'
               '=-1; _uuid=E6D2C6DB-D7C10-2C37-C8DF-4'
@@ -33,6 +33,7 @@ headers = {
 }
 # 获取弹幕地址
 
+
 def get_danmu_url(video_str):
     url = video_str
     response = requests.get(url=url, headers=headers)
@@ -42,10 +43,14 @@ def get_danmu_url(video_str):
     return danmu_url
 
 # 获取视频地址
+
+
 def get_vedio(bv):
     vedio_url = "https://www.bilibili.com/video/"+bv
     return vedio_url
 # 获取bv号
+
+
 def get_bvid(url, pos):
 
     # 通过搜索api“https://api.bilibili.com/x/web-interface/search/all/v2?page=1-15&keyword=”获取前300个视频的bvid
@@ -54,6 +59,8 @@ def get_bvid(url, pos):
     return json_dict["data"]["result"][11]["data"][pos]["bvid"]
 
 # 统计弹幕次数
+
+
 def count_danmu():
     # 打开TXT文件以读取数据
     file_path = '弹幕.txt'
@@ -80,6 +87,8 @@ def count_danmu():
     df.to_excel('统计弹幕次数.xlsx', index=False)
 
 # 生成云图
+
+
 def make_graph():
     text_data = ''
     with open('弹幕.txt', 'r', encoding='utf-8') as file:
@@ -139,6 +148,8 @@ def main():
             f.close()
     warnings.filterwarnings("ignore")
     count_danmu()
-make_graph()
-# if __name__ == '__main__':
-#      main()
+    make_graph()
+
+
+if __name__ == '__main__':
+    main()
